@@ -1,11 +1,29 @@
-# Predicting Banking Services Availabilty using Machine Learning 
+# Banking Services Prediction with Explainable AI
 
-The project consists of 3 models:
-* **Loan Repayment prediction model**: Through this model, if a customer applies for a loan, banks would be able to determine if it is profitable to provide the requested loan, i.e.
-a prediction would be made whether the customer would be able to successfully repay the loan.
+An ensemble machine learning system that models three sequential banking decisions: customer churn, credit default risk, and loan repayment eligibility using a 
+cascaded architecture where each model's output gates the next. SHAP analysis is 
+applied across all three models to produce interpretable, feature-level explanations 
+for each prediction.
 
-* **Customer Satisfaction prediction model**: Through this model, it is identified if a particular customer is satisfied by the bank's services or not. For this, various behavioural details of the customer are given as input to the Customer Satisfaction Prediction Model (eg Credit score, number of bank products owned, frequency of service utilization, etc.)
+Published and presented at the International Conference for Contemporary 
+Computing (IC3) 2022 — https://doi.org/10.1145/3549206.3549259
 
-* **Credit Default prediction model**: Through the Customer Satisfaction prediction model, if it is obtained that the customer is unsatisfied, we then feed the customer’s past credit card bill details to the Credit Default Prediction Model. These details mainly include the user’s credit card statements for the past six months. If the model's output is that the customer will not default in credit card payments, the bank can look forward to retaining the customer by offering more competitive offers/schemes.  
+## Models
 
-**Shapely Additive Explanations (SHAP) analysis** has also been performed for each of the models, in order to help identify the direction and extent of a particular feature in impacting the final decision of the respective models.
+**1. Customer Satisfaction / Churn Prediction**
+Classifies whether a customer is likely to churn based on behavioral signals 
+(credit score, product ownership, service utilization frequency). A churn prediction 
+triggers the credit default pipeline.
+
+**2. Credit Default Prediction**
+Evaluates six months of credit card statement history to assess whether an 
+at-risk customer is still creditworthy, informing retention offer decisions.
+
+**3. Loan Repayment Prediction**
+Independently assesses loan eligibility using customer demographics and loan 
+parameters (intent, amount, interest rate, employment length).
+
+## Explainability
+SHAP (SHapley Additive Explanations) analysis is applied to each model to quantify 
+per-feature contribution, providing directional and magnitude-level insight into 
+model decisions, critical for auditability in regulated financial contexts.
